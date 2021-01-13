@@ -9,11 +9,11 @@ import sys
 import urllib3
 
 
-username = "jacobsardo"
+USERNAME = ""
 
 # EDIT FILE NAME AND LOCATION HERE
-filename = 'EtsyOrdersInfo'
-location = '/Users/'+username+'/Documents/'
+FILENAME = 'EtsyOrdersInfo'
+LOCATION = '/Users/'+USERNAME+'/Documents/'
 
 # EDIT EXCEL COLUMN NAMES HERE
 cols = ["Order Number", "Tracking Number", "Customer"]
@@ -45,7 +45,6 @@ if (currentPage.status_code != 200):
 currentPage = currentPage.text
 currentPage = BeautifulSoup(currentPage, 'lxml')
 
-# _________may not be needed anymore maybe remove this???____________________
 # creating array of individual pages to loop through
 pages = currentPage.find(id='content')
 pages = pages.find("div", {"class": "pager"})
@@ -130,10 +129,10 @@ while(currentPage):
 
 # Creating dataFrame and exporting to excel sheet
 dateTimeObj = datetime.now()
-filename = filename + ' ' + dateTimeObj.strftime("%d-%b-%Y (%H:%M)")
+FILENAME = FILENAME + ' ' + dateTimeObj.strftime("%d-%b-%Y (%H:%M)")
 df = pd.DataFrame(data, columns=cols)
 dfNoNames = df[["Order Number", "Tracking Number"]]
-dfNoNames.to_excel(r'/Users/'+username+'/Documents/' +
-                   filename + '.xlsx', index=False)
-df.to_excel(r'/Users/'+username+'/Documents/' +
-            filename + '|NAMES|' + '.xlsx', index=False)
+dfNoNames.to_excel(r'/Users/'+USERNAME+'/Documents/' +
+                   FILENAME + '.xlsx', index=False)
+df.to_excel(r'/Users/'+USERNAME+'/Documents/' +
+            FILENAME + '|NAMES|' + '.xlsx', index=False)
