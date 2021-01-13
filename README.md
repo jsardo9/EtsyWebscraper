@@ -1,2 +1,2 @@
 # EtsyWebscraper
- A script designed to convert an Etsy seller's online orders into an excel sheet with information regarding each purchase. 
+ A script which converts Etsy sellers' online orders into Excel sheets containing information regarding each purchase.
